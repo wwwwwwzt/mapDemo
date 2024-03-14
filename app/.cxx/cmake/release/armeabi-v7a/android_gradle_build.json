@@ -1,0 +1,54 @@
+{
+  "stringTable": {
+    "0": "E:/AppDataStore/WeChat Files/wxid_9aywcps6ia4h22/FileStorage/File/2021-05/ncnn-android-yolov5/ncnn-android-yolov5/app/.cxx/cmake/release/armeabi-v7a",
+    "1": "--target=armv7-none-linux-androideabi24 --gcc-toolchain=C:/Users/jone/AppData/Local/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/jone/AppData/Local/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dyolov5ncnn_EXPORTS -isystem E:/AppDataStore/WeChat Files/wxid_9aywcps6ia4h22/FileStorage/File/2021-05/ncnn-android-yolov5/ncnn-android-yolov5/app/src/main/jni/ncnn-20201218-android-vulkan/armeabi-v7a/include/ncnn -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC -fno-rtti -fno-exceptions"
+  },
+  "buildFiles": [
+    "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670\\build\\cmake\\android.toolchain.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\ncnn\\ncnn-release.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\SPIRVTargets-release.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\OGLCompilerTargets-release.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\glslangTargets-release.cmake",
+    "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670\\build\\cmake\\platforms.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\SPIRVTargets.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\ncnn\\ncnnConfig.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\CMakeLists.txt",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\glslangTargets.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\ncnn\\ncnn.cmake",
+    "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670\\build\\cmake\\compiler_id.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\OSDependentTargets-release.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\OGLCompilerTargets.cmake",
+    "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\ncnn-20201218-android-vulkan\\armeabi-v7a\\lib\\cmake\\OSDependentTargets.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "yolov5ncnn-Release-armeabi-v7a": {
+      "buildCommand": "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\" yolov5ncnn",
+      "buildType": "release",
+      "toolchain": "3997247594",
+      "abi": "armeabi-v7a",
+      "artifactName": "yolov5ncnn",
+      "files": [
+        {
+          "src": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\yolov5ncnn_jni.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libyolov5ncnn.so"
+    }
+  },
+  "toolchains": {
+    "3997247594": {
+      "cppCompilerExecutable": "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

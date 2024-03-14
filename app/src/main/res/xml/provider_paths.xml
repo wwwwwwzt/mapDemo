@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 使用getExternalCacheDir()可直接拿到下面定义的路径 -->
+    <external-cache-path
+        name="cachef"
+        path="."/>
+</paths>

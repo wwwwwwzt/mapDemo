@@ -1,0 +1,7 @@
+# ninja log v5
+180	4317	699533268	CMakeFiles/yolov5ncnn.dir/common.cpp.o	8e5419c04e4d9132
+317	4600	699533269	CMakeFiles/yolov5ncnn.dir/clipper.cpp.o	c25229c73110af7a
+4	4997	699533269	CMakeFiles/yolov5ncnn.dir/yolov5ncnn_jni.cpp.o	d00db6eb675033ae
+4998	8051	699533272	C:/Users/windows/Desktop/CaneAuxiliary-main/app/build/intermediates/cmake/debug/obj/arm64-v8a/libyolov5ncnn.so	20be91346fc7e6c4
+39	3109	699893638	CMakeFiles/yolov5ncnn.dir/yolov5ncnn_jni.cpp.o	d00db6eb675033ae
+3111	5510	699893640	C:/Users/windows/Desktop/CaneAuxiliary-main/app/build/intermediates/cmake/debug/obj/arm64-v8a/libyolov5ncnn.so	20be91346fc7e6c4

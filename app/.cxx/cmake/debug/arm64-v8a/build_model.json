@@ -1,0 +1,68 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main",
+      "sdkFolder": "C:\\Users\\windows\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app",
+      "makeFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\src\\main\\jni\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\.cxx",
+      "cxxFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx",
+      "ndkFolder": "C:\\Users\\windows\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529",
+      "ndkVersion": "21.4.7075529",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "debug",
+    "soFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARM64_V8A",
+  "abiPlatformVersion": 24,
+  "cxxBuildFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a",
+  "jsonFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a",
+  "objFolder": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a",
+  "buildCommandFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_command.txt",
+  "buildOutputFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_output.txt",
+  "modelOutputFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\build_generation_state.json",
+    "cacheKeyFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\Users\\windows\\Desktop\\CaneAuxiliary-main\\app\\.cxx\\cmake\\debug\\arm64-v8a\\compile_commands.json"
+}

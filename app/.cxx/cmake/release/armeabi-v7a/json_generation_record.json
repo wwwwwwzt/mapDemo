@@ -1,0 +1,18 @@
+[
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 24 min SDK version: armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "- CMake found from cmake.dir at \u0027C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\u0027 had version \u00273.10.2\u0027"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON \u0027E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json\u0027 was up-to-date"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed without problems"
+  }
+]

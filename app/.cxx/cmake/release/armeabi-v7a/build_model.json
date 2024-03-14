@@ -1,0 +1,68 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5",
+      "sdkFolder": "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app",
+      "makeFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\src\\main\\jni\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\.cxx",
+      "cxxFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx",
+      "ndkFolder": "C:\\Users\\jone\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670",
+      "ndkVersion": "22.1.7171670",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "soFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 24,
+  "cxxBuildFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a",
+  "jsonFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a",
+  "objFolder": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a",
+  "buildCommandFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "E:\\AppDataStore\\WeChat Files\\wxid_9aywcps6ia4h22\\FileStorage\\File\\2021-05\\ncnn-android-yolov5\\ncnn-android-yolov5\\app\\.cxx\\cmake\\release\\armeabi-v7a\\compile_commands.json"
+}
