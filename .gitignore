@@ -1,6 +1,7 @@
 .gradle
 .idea
 build/
+app/.cxx/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
