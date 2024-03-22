@@ -8,4 +8,6 @@
     <string name="config">工具</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="privacy_content">欢迎您使用百度地图开放平台产品和服务,为响应工信部针对进一步加强用户隐私安全保障措施的号召，以便更好地为广大用户提供更合规、更安全、更稳定的服务体验，
+        平台全面更新了《百度地图开放平台产品和服务隐私政策》,请认真阅读并同意隐私服务政策 <a href="https://lbsyun.baidu.com/index.php?title=openprivacy">隐私政策官网链接</a></string>
 </resources>

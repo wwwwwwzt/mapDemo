@@ -28,13 +28,16 @@
 
 
     <application android:label="@string/app_name"
+        android:name=".CaneAuxiliaryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Blindsticknavigate"
         android:usesCleartextTraffic="true">
-
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="jZSZzTBIcIh7NU5hqIRwoKXmsEKlmtfC" />
         <meta-data android:name="com.amap.api.v2.apikey" android:value="c4908fd1b13cce5144631dfe58805365"/>
         <service android:name="com.amap.api.location.APSService"/>
         <activity android:name=".MainActivity"

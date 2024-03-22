@@ -65,7 +65,8 @@ dependencies {
 
 
     implementation 'com.amap.api:map2d:latest.integration'
-    implementation 'com.amap.api:search:latest.integration'
+    //location-6.4.3 与 search-9.7.1有冲突，暂时注掉search
+    //implementation 'com.amap.api:search:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
 
     implementation 'com.squareup.okhttp3:okhttp:3.14.2'

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.Sensor;
@@ -12,12 +13,16 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -33,6 +38,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.tencent.yolov5ncnn.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -308,6 +314,48 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    private void privacyDialog() {
+        SharedPreferences sp = getSharedPreferences(CaneAuxiliaryApplication.SP_NAME, Context.MODE_PRIVATE);
+        boolean ifAgree = sp.getBoolean(CaneAuxiliaryApplication.SP_KEY, false);
+        if (ifAgree) {
+            return;
+        }
+        // ‼️重要：设置用户是否同意SDK隐私协议，必须SDK初始化前按用户意愿设置
+        // 隐私政策官网链接：https://lbsyun.baidu.com/index.php?title=openprivacy
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("温馨提示");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View view = getLayoutInflater().inflate(R.layout.layout_privacy_dialog, null);
+            TextView privacyTv = view.findViewById(R.id.privacy_tv);
+            privacyTv.setMovementMethod(LinkMovementMethod.getInstance());
+            dialog.setView(view);
+        } else {
+            dialog.setMessage(R.string.privacy_content);
+        }
+        dialog.setPositiveButton("同意", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = getSharedPreferences(CaneAuxiliaryApplication.SP_NAME, Context.MODE_PRIVATE).edit();
+                editor.putBoolean(CaneAuxiliaryApplication.SP_KEY, true);
+                editor.apply();
+                SDKInitializer.setAgreePrivacy(MainActivity.this.getApplicationContext(), true);
+                //LocationClient.setAgreePrivacy(true);
+                dialog.dismiss();
+            }
+        });
+        dialog.setNegativeButton("不同意", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SDKInitializer.setAgreePrivacy(MainActivity.this.getApplicationContext(), false);
+                //LocationClient.setAgreePrivacy(false);
+                dialog.dismiss();
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.show();
+
+    }
 
 
 }
