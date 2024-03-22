@@ -21,6 +21,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.realtimebus.RealTimeBusManager;
+import com.baidu.mapsdkplatform.realtimebus.realtimebusoption.RealTimeNearbyBusOption;
 import com.tencent.yolov5ncnn.BleLowEnergy;
 import com.tencent.yolov5ncnn.Businfo;
 import com.tencent.yolov5ncnn.Businformation;
@@ -223,9 +226,18 @@ public class HomeFragment extends Fragment {
                 double lng=((MainActivity) requireActivity()).lng;
                 double lat=((MainActivity) requireActivity()).lat;
 
-                Businformation bus=new Businformation(lng,lat,homefraghandler);
-
-                new Thread(bus::reportword).start();
+//                Businformation bus=new Businformation(lng,lat,homefraghandler);
+//
+//                new Thread(bus::reportword).start();
+                RealTimeNearbyBusOption realTimeNearbyBusOption = new RealTimeNearbyBusOption();
+                // 设置城市id
+                realTimeNearbyBusOption.setCityID(131);
+                //realTimeNearbyBusOption.setCityID(257);
+                // 设置当前经纬度
+                realTimeNearbyBusOption.setLatLng(new LatLng(40.057789,116.307403));
+                //realTimeNearbyBusOption.setLatLng(new LatLng(23.146217,113.254501));
+                // 发起周边实时公交检索
+                RealTimeBusManager.getInstance().realTimeNearbyBusSearch(realTimeNearbyBusOption);
             }
         });
 

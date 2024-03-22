@@ -39,13 +39,20 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.realtimebus.RealTimeBusDataListener;
+import com.baidu.mapapi.realtimebus.RealTimeBusManager;
+import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusResult;
+import com.baidu.mapapi.realtimebus.stationbus.RealTimeBusStationInfoListResult;
+import com.baidu.mapapi.realtimebus.uidlinebus.RealTimeBusLineResult;
+import com.baidu.mapsdkplatform.realtimebus.realtimebusoption.RealTimeNearbyBusOption;
 import com.tencent.yolov5ncnn.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RealTimeBusDataListener {
 
     BleLowEnergy ble;
 
@@ -104,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 动态申请相应权限，弹出提示框
         checkedPermission();
+        privacyDialog();
 
         yoloV5Ncnn = new YoloV5Ncnn();
         boolean ret_init = yoloV5Ncnn.Init(getAssets());    // 调用Init方法
@@ -137,9 +145,24 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME);
         mSensorManager.registerListener(listener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
 
+        initBaiduMapRealTimeBus();
     }
 
-//    设置本app字体
+    private void initBaiduMapRealTimeBus() {
+        RealTimeBusManager.getInstance().registerRealTimeBusListener(this);
+        // 创建周边实时公交检索Option
+//        RealTimeNearbyBusOption realTimeNearbyBusOption = new RealTimeNearbyBusOption();
+//        // 设置城市id
+//        realTimeNearbyBusOption.setCityID(131);
+//        //realTimeNearbyBusOption.setCityID(257);
+//        // 设置当前经纬度
+//        realTimeNearbyBusOption.setLatLng(new LatLng(40.057789,116.307403));
+//        //realTimeNearbyBusOption.setLatLng(new LatLng(23.146217,113.254501));
+//        // 发起周边实时公交检索
+//        RealTimeBusManager.getInstance().realTimeNearbyBusSearch(realTimeNearbyBusOption);
+    }
+
+    //    设置本app字体
     @Override
     public Resources getResources() {
         Resources resources = super.getResources();
@@ -285,6 +308,7 @@ public class MainActivity extends AppCompatActivity {
         if(mSensorManager != null) {
             mSensorManager.unregisterListener(listener);
         }
+        RealTimeBusManager.getInstance().destroyRealTimeNearbyBus();
     }
 
     private SensorEventListener listener = new SensorEventListener() {
@@ -358,4 +382,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onGetRealTimeNearbyBusDataListener(RealTimeNearbyBusResult realTimeNearbyBusResult) {
+        Log.d(CaneAuxiliaryApplication.BAIDU_MAP_REALTIME_BUS_TAG_NAME, realTimeNearbyBusResult.toString());
+    }
+
+    @Override
+    public void onGetRealTimeBusLineDataListener(RealTimeBusLineResult realTimeBusLineResult) {
+
+    }
+
+    @Override
+    public void onGetRealTimeBusStationDataListener(RealTimeBusStationInfoListResult realTimeBusStationInfoListResult) {
+
+    }
+
+    @Override
+    public void onGetLocationTimeOut() {
+
+    }
 }
