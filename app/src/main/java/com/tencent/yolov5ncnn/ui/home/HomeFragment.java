@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
@@ -211,6 +212,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mCameraCapt.setFlag(profile.PUASE_FLAG);
+                Log.d("Amap Gode location gotten: ", "lat:" + String.valueOf(mainact.lat) + " lng" + String.valueOf(mainact.lng) + " address:" + mainact.address + " direction:" + String.valueOf(mainact.bearing));
                 mainact.audio.setAddress(mainact.address);
                 mainact.audio.speakreport();
             }
@@ -219,25 +221,35 @@ public class HomeFragment extends Fragment {
         busreport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainact.audio.speak("查询中，请稍候。");
+                mainact.hasGotNearbyBusInfo = false;
                 mCameraCapt.setFlag(profile.PUASE_FLAG);
                 GodeLocation godeLocation=new GodeLocation(mainact,homefraghandler);
                 godeLocation.startlocate();
                 //获取poi兴趣点公交站
-                double lng=((MainActivity) requireActivity()).lng;
-                double lat=((MainActivity) requireActivity()).lat;
+                double lng=mainact.lng;
+                double lat=mainact.lat;
 
 //                Businformation bus=new Businformation(lng,lat,homefraghandler);
 //
 //                new Thread(bus::reportword).start();
+                RealTimeBusManager.getInstance().registerRealTimeBusListener(mainact);
                 RealTimeNearbyBusOption realTimeNearbyBusOption = new RealTimeNearbyBusOption();
                 // 设置城市id
-                realTimeNearbyBusOption.setCityID(131);
+                if(-1==mainact.cityID){
+                    mainact.audio.speak("尚未获取所在城市，请确认已打开定位功能。稍后重试。");
+                    return;
+                } else {
+                    realTimeNearbyBusOption.setCityID(mainact.cityID);
+                }
+                realTimeNearbyBusOption.setCityID(((MainActivity) requireActivity()).cityID);
                 //realTimeNearbyBusOption.setCityID(257);
                 // 设置当前经纬度
-                realTimeNearbyBusOption.setLatLng(new LatLng(40.057789,116.307403));
+                realTimeNearbyBusOption.setLatLng(new LatLng(lat,lng));
                 //realTimeNearbyBusOption.setLatLng(new LatLng(23.146217,113.254501));
                 // 发起周边实时公交检索
                 RealTimeBusManager.getInstance().realTimeNearbyBusSearch(realTimeNearbyBusOption);
+                //RealTimeBusManager.getInstance().destroyRealTimeNearbyBus();
             }
         });
 
@@ -328,6 +340,7 @@ public class HomeFragment extends Fragment {
                 mainact.lat=Double.parseDouble(((String)msg.obj).split("&")[1]);
                 mainact.address = String.valueOf((String) msg.obj).split("&")[2];
                 mainact.bearing = Float.parseFloat(((String) msg.obj).split("&")[3]);
+                mainact.searchReverseGeoCode(mainact.lat, mainact.lng);
                 break;
         }
     }
@@ -400,9 +413,26 @@ public class HomeFragment extends Fragment {
                 double lng = mainact.lng;
                 double lat = mainact.lat;
 
-                Businformation bus=new Businformation(lng, lat, homefraghandler);
-
-                new Thread(bus::reportword).start();
+//                Businformation bus=new Businformation(lng, lat, homefraghandler);
+//
+//                new Thread(bus::reportword).start();
+                RealTimeBusManager.getInstance().registerRealTimeBusListener(mainact);
+                RealTimeNearbyBusOption realTimeNearbyBusOption = new RealTimeNearbyBusOption();
+                // 设置城市id
+                if(-1==mainact.cityID){
+                    mainact.audio.speak("尚未获取所在城市，请确认已打开定位功能。稍后重试。");
+                    return;
+                } else {
+                    realTimeNearbyBusOption.setCityID(mainact.cityID);
+                }
+                realTimeNearbyBusOption.setCityID(((MainActivity) requireActivity()).cityID);
+                //realTimeNearbyBusOption.setCityID(257);
+                // 设置当前经纬度
+                realTimeNearbyBusOption.setLatLng(new LatLng(lat,lng));
+                //realTimeNearbyBusOption.setLatLng(new LatLng(23.146217,113.254501));
+                // 发起周边实时公交检索
+                RealTimeBusManager.getInstance().realTimeNearbyBusSearch(realTimeNearbyBusOption);
+                //RealTimeBusManager.getInstance().destroyRealTimeNearbyBus();
                 break;
             case profile.ZEBRACROSSING:
                 mCameraCapt.setYoloV5Ncnn(mainact.yoloV5Ncnn);

@@ -36,7 +36,7 @@ public class GodeLocation {
                         Double lng=aMapLocation.getLongitude();//获取经度
                         String address = aMapLocation.getAddress(); //获取地址
                         Float bearing = aMapLocation.getBearing(); // 获取方向角
-                        Log.i("Gode location get:","lat:"+String.valueOf(lat)+"lng"+String.valueOf(lng)+"address:"+aMapLocation.getAddress()+"direction:"+String.valueOf(aMapLocation.getBearing()));
+                        Log.i("Amap Gode location get:","lat:"+String.valueOf(lat)+"lng"+String.valueOf(lng)+"address:"+aMapLocation.getAddress()+"direction:"+String.valueOf(aMapLocation.getBearing()));
                         Message msg=Message.obtain();
                         msg.what=2;
                         msg.obj=String.valueOf(lng)+"&"+String.valueOf(lat)+"&"+address+"&"+String.valueOf(bearing);

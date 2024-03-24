@@ -10,6 +10,7 @@ import com.baidu.mapapi.common.BaiduMapSDKException;
 
 public class CaneAuxiliaryApplication extends Application {
 
+    public static int BAIDU_MAP_REALTIME_BUS_MAX_STATION_NUM = 2;
     public static String BAIDU_MAP_REALTIME_BUS_TAG_NAME = "BaiduMapRealTimeBus";
 
     public static String SP_NAME = "privacy";

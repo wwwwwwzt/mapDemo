@@ -82,7 +82,7 @@ public class Audio {
         // 设置音调，值越大声音越尖（女生），值越小则变成男声,1.0是常规
         textToSpeech.setPitch(0.9f);
         // 设置语速
-        textToSpeech.setSpeechRate(3.0f);
+        textToSpeech.setSpeechRate(1.0f);
         //输入中文，若不支持的设备则不会读出来
         textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null, null);
     }

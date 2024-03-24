@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -42,19 +44,33 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.realtimebus.RealTimeBusDataListener;
 import com.baidu.mapapi.realtimebus.RealTimeBusManager;
+import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusDirectionInfo;
+import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusLineInfo;
 import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusResult;
+import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusStationInfo;
+import com.baidu.mapapi.realtimebus.nearbybus.RealTimeNearbyBusVehicleInfo;
 import com.baidu.mapapi.realtimebus.stationbus.RealTimeBusStationInfoListResult;
 import com.baidu.mapapi.realtimebus.uidlinebus.RealTimeBusLineResult;
-import com.baidu.mapsdkplatform.realtimebus.realtimebusoption.RealTimeNearbyBusOption;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.tencent.yolov5ncnn.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RealTimeBusDataListener {
+public class MainActivity extends AppCompatActivity implements RealTimeBusDataListener, OnGetGeoCoderResultListener {
 
     BleLowEnergy ble;
+
+    private GeoCoder mBaiduMapGeoCoder;
+    public int cityID = -1;
+
+    public boolean hasGotNearbyBusInfo = false;
 
     private  final int permissionCode = 1010;
     private FragmentManager fmanager;
@@ -137,6 +153,10 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
         audio = new Audio(this);
         GodeLocation godeLocation=new GodeLocation(this,locationhandler);
         godeLocation.startlocate();
+
+        //百度逆地理编码初始化
+        mBaiduMapGeoCoder = GeoCoder.newInstance();
+        mBaiduMapGeoCoder.setOnGetGeoCodeResultListener(this);
 
         // 获取手机倾角
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -298,7 +318,20 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
             this.lat = Double.parseDouble(((String) msg.obj).split("&")[1]);
             this.address = String.valueOf((String) msg.obj).split("&")[2];
             this.bearing = Float.parseFloat(((String) msg.obj).split("&")[3]);
+
+            //发起百度地图逆地理编码检索
+            searchReverseGeoCode(lat, lng);
         }
+    }
+
+    public void searchReverseGeoCode(double lat, double lng){
+        LatLng point = new LatLng(lat, lng);
+        mBaiduMapGeoCoder.reverseGeoCode(new ReverseGeoCodeOption()
+                .location(point)
+                // 设置是否返回新数据 默认值0不返回，1返回
+                .newVersion(1)
+                // POI召回半径，允许设置区间为0-1000米，超过1000米按1000米召回。默认值为1000
+                .radius(500));
     }
 
     @Override
@@ -309,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
             mSensorManager.unregisterListener(listener);
         }
         RealTimeBusManager.getInstance().destroyRealTimeNearbyBus();
+        mBaiduMapGeoCoder.destroy();
     }
 
     private SensorEventListener listener = new SensorEventListener() {
@@ -330,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
             SensorManager.getOrientation(outR, values);
             float xAngle = (float) Math.toDegrees(values[2]) + 180.0f;
             obstacle.setxAngle(xAngle);
-            Log.d("MainActivity", "value[2] is " + xAngle);
+//            Log.d("MainActivity", "value[2] is " + xAngle);
         }
 
         @Override
@@ -384,7 +418,151 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
 
     @Override
     public void onGetRealTimeNearbyBusDataListener(RealTimeNearbyBusResult realTimeNearbyBusResult) {
+        if(this.hasGotNearbyBusInfo){
+           return;
+        } else {
+            this.hasGotNearbyBusInfo = true;
+        }
         Log.d(CaneAuxiliaryApplication.BAIDU_MAP_REALTIME_BUS_TAG_NAME, realTimeNearbyBusResult.toString());
+        String nearbyBusMesssage = "";
+
+        if (realTimeNearbyBusResult.error != com.baidu.mapsdkplatform.realtimebus.base.SearchResult.ERRORNO.NO_ERROR) {
+            nearbyBusMesssage = "查询周边公交信息失败，请稍后再试。";
+        } else {
+            // 取出公交站点信息层
+            List<RealTimeNearbyBusStationInfo> realTimeNearByBusStationInfoList = realTimeNearbyBusResult.getRealTimeNearByBusStationInfo();
+            // 公交站点信息层不为空
+            if (null != realTimeNearByBusStationInfoList && realTimeNearByBusStationInfoList.size() > 0) {
+                String stationMessages = "";
+                for (int i = 0; i < realTimeNearByBusStationInfoList.size(); i++) {
+                    if(i==CaneAuxiliaryApplication.BAIDU_MAP_REALTIME_BUS_MAX_STATION_NUM){
+                        break;
+                    }
+                    // 遍历公交站点信息层
+                    RealTimeNearbyBusStationInfo realTimeNearbyBusStationInfo = realTimeNearByBusStationInfoList.get(i);
+                    if(null == realTimeNearbyBusStationInfo) {
+                        continue;
+                    }
+                    String stationName = realTimeNearbyBusStationInfo.getStationName();
+                    int stationDistance = realTimeNearbyBusStationInfo.getDistance();
+                    String stationLabel = realTimeNearbyBusStationInfo.getStationLabel();
+                    String stationMessage = stationLabel + stationName + "站，距离" + stationDistance + "米，";
+                    if(i != 0) {
+                        nearbyBusMesssage += "\n";
+                    }
+                    nearbyBusMesssage += stationMessage;
+
+                    // 取出所属公交线路层信息
+                    List<RealTimeNearbyBusLineInfo> realTimeNearbyBusLineInfos =
+                            realTimeNearbyBusStationInfo.getRealTimeNearbyBusLineInfo();
+                    // 公交线路信息层不为空
+                    if(null != realTimeNearbyBusLineInfos && realTimeNearbyBusLineInfos.size() > 0) {
+                        String busLineMessages = "";
+                        // 遍历公交线路信息层
+                        for(int j=0; j<realTimeNearbyBusLineInfos.size(); j++) {
+                            // 取出1条公交线路信息
+                            RealTimeNearbyBusLineInfo realTimeNearbyBusLineInfo = realTimeNearbyBusLineInfos.get(j);
+                            if(null == realTimeNearbyBusLineInfo) {
+                                continue;
+                            } else {
+                                // 公交线路信息不为空
+                                if (j == 0) {
+                                    busLineMessages += "停靠公交线路信息：";
+                                }
+                            }
+                            String lineName = realTimeNearbyBusLineInfo.getLineName();
+
+                            busLineMessages += lineName + "，";
+                            // 取出公交线路方向层信息
+                            List<RealTimeNearbyBusDirectionInfo> realTimeNearByBusDirectionInfo = realTimeNearbyBusLineInfo.getRealTimeNearByBusDirectionInfo();
+                            // 公交线路方向层不为空
+                            if (null != realTimeNearByBusDirectionInfo && realTimeNearByBusDirectionInfo.size() > 0) {
+                                String busDiresctionMessage = "";
+                                //公交方向层信息是个只有1个元素的数组，取出唯一的一个元素
+                                RealTimeNearbyBusDirectionInfo realTimeNearbyBusDirectionInfo = realTimeNearByBusDirectionInfo.get(0);
+                                // 公交方向层信息不为空
+                                if (null != realTimeNearbyBusDirectionInfo) {
+                                    String directionName = realTimeNearbyBusDirectionInfo.getDirectionName();
+                                    busDiresctionMessage = "开往" + directionName;
+
+                                    busLineMessages += busDiresctionMessage + "，";
+                                    //取出实时公交车辆信息层
+                                    List<RealTimeNearbyBusVehicleInfo> realTimeNearbyBusVehicleInfos =
+                                            realTimeNearbyBusDirectionInfo.getRealTimeNearbyBusVehicleInfo();
+                                    // 实时公交车辆信息层不为空
+                                    if (null != realTimeNearbyBusVehicleInfos && realTimeNearbyBusVehicleInfos.size() > 0) {
+                                        // 取出第1辆公交车辆信息
+                                        RealTimeNearbyBusVehicleInfo realTimeNearbyBusVehicleInfo
+                                                = realTimeNearbyBusVehicleInfos.get(0);
+
+                                        if (null != realTimeNearbyBusVehicleInfo) {
+                                            //第1辆公交车辆信息不为空
+                                            int arriveStatus = realTimeNearbyBusVehicleInfo.getArriveStatus();
+                                            int remainTime = realTimeNearbyBusVehicleInfo.getRemainTime();
+                                            int stops = realTimeNearbyBusVehicleInfo.getRemainStops();
+                                            String arriveStatusMessage1 = "第1辆";
+                                            switch (arriveStatus) {
+                                                case 0:
+                                                    arriveStatusMessage1 += "还有" + remainTime / 60 + "分钟，" + stops + "站";
+                                                    break;
+                                                case 1:
+                                                    arriveStatusMessage1 += "即将到达";
+                                                    break;
+                                                case 2:
+                                                    arriveStatusMessage1 += "车已到站";
+                                                    break;
+                                            }
+                                            busLineMessages += arriveStatusMessage1 + "，";
+                                        }
+                                        // 是否超过1个公交车辆信息
+                                        if (realTimeNearbyBusVehicleInfos.size() > 1) {
+                                            // 取出第2辆公交车辆信息
+                                            RealTimeNearbyBusVehicleInfo
+                                                    nextBusInfo = realTimeNearbyBusVehicleInfos.get(1);
+                                            // 第2辆公交车辆信息不为空
+                                            if (null != nextBusInfo) {
+                                                int arriveStatus = nextBusInfo.getArriveStatus();
+                                                int remainTime = nextBusInfo.getRemainTime();
+                                                int stops = nextBusInfo.getRemainStops();
+                                                String arriveStatusMessage2 = "第2辆";
+                                                switch (arriveStatus) {
+                                                    case 0:
+                                                        arriveStatusMessage2 += ("还有" + remainTime / 60 + "分钟，" + stops + "站" );
+                                                        break;
+                                                    case 1:
+                                                        arriveStatusMessage2 += ("即将到达");
+                                                        break;
+                                                    case 2:
+                                                        arriveStatusMessage2 += ("车已到站");
+                                                        break;
+                                                }
+                                                busLineMessages += arriveStatusMessage2 + "，";
+                                            }
+                                        }
+                                    } else { //实时公交车辆信息层为空
+                                        String nextArrRange = realTimeNearbyBusDirectionInfo.getNextArrRange();
+                                        if (!TextUtils.isEmpty(nextArrRange)) {
+                                            busLineMessages += "等待首站发车" + "，" + nextArrRange + "，";
+                                        } else {
+                                            String startTime = realTimeNearbyBusDirectionInfo.getStartTime();
+                                            busLineMessages += "非运营时间" + "，" + "最近班次 " + startTime + "，";
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                        nearbyBusMesssage += busLineMessages;
+                    } else {
+                        nearbyBusMesssage += "没有公交线路信息。";
+                    }
+                }
+            } else {
+                nearbyBusMesssage = "附近没有公交站点。请稍后再试。";
+            }
+        }
+
+        Log.d(CaneAuxiliaryApplication.BAIDU_MAP_REALTIME_BUS_TAG_NAME, nearbyBusMesssage);
+        audio.speak(nearbyBusMesssage);
     }
 
     @Override
@@ -400,5 +578,25 @@ public class MainActivity extends AppCompatActivity implements RealTimeBusDataLi
     @Override
     public void onGetLocationTimeOut() {
 
+    }
+
+    @Override
+    public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+
+    }
+
+    @Override
+    public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+        if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+            //没有找到检索结果
+            return;
+        } else {
+            //详细地址
+            String address = reverseGeoCodeResult.getAddress();
+            //行政区号
+
+            this.cityID = reverseGeoCodeResult.getCityCode();
+            Log.d(CaneAuxiliaryApplication.BAIDU_MAP_REALTIME_BUS_TAG_NAME, " cityID: " + this.cityID);
+        }
     }
 }
